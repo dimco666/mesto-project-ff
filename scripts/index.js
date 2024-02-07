@@ -25,7 +25,6 @@ initialCards.forEach(function(element) {
     cardElement.querySelector('.card__like-button').addEventListener('click', function (event) {
       event.target.classList.toggle('card__like-button_is-active');
     });
-
     placesList.append(cardElement);
 });
 
