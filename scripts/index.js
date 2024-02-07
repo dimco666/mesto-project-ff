@@ -17,29 +17,30 @@ const cardTemplate = document.querySelector('#card-template').content;
 initialCards.forEach(function(element) {
     const cardElement = cardTemplate.cloneNode(true);
 
-    cardElement.querySelector('.card__image').src = element.image;
+    cardElement.querySelector('.card__image').src = element.link;
     cardElement.querySelector('.card__title').textContent = element.name;
+    cardElement.querySelector('.card__delete-button').addEventListener('click', function (event) {
+      event.target.closest('.card').remove();
+    });
+    cardElement.querySelector('.card__like-button').addEventListener('click', function (event) {
+      event.target.classList.toggle('card__like-button_is-active');
+    });
 
     placesList.append(cardElement);
 });
 
 function addCard() {
-    placesList.innerHTML += `
-    <li class="places__item card">
-    <img class="card__image" src="" alt="" />
-    <button type="button" class="card__delete-button"></button>
-    <div class="card__description">
-      <h2 class="card__title">
-      </h2>
-      <button type="button" class="card__like-button"></button>
-    </div>
-  </li>`;
+  const templateCopy = cardTemplate.cloneNode(true);
+  templateCopy.querySelector('.card__image').src = ''.alt = '';
+  templateCopy.querySelector('.card__delete-button');
+  templateCopy.querySelector('.card__like-button');
+  templateCopy.querySelector('.card__title').textContent = '';
+  templateCopy.querySelector('.card__delete-button').addEventListener('click', function (event) {
+    event.target.closest('.card').remove();
+  });
+  templateCopy.querySelector('.card__like-button').addEventListener('click', function (event) {
+    event.target.classList.toggle('card__like-button_is-active');
+  });
+  placesList.append(templateCopy);
 }
 addButton.addEventListener('click', addCard);
-
-const deleteCardButton = document.querySelector('.card__delete-button');
-
-deleteCardButton.addEventListener('click', function () {
-    const cardItem = deleteCardButton.closest('.card');
-    cardItem.remove();
-});
