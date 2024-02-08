@@ -8,11 +8,11 @@
 
 // @todo: Вывести карточки на страницу
 
-const content = document.querySelector('.content');
+/*const content = document.querySelector('.content');
 const placesList = content.querySelector('.places__list');
 const cards = placesList.querySelectorAll('.card');
 const addButton = content.querySelector('.profile__add-button');
-const cardTemplate = document.querySelector('#card-template').content;
+const cardTemplate = document.querySelector('#card-template').content;*/
 
 /*initialCards.forEach(function(element) {
     const cardElement = cardTemplate.cloneNode(true);
@@ -44,6 +44,12 @@ function addCard() {
 }
 addButton.addEventListener('click', addCard);*/
 
+const content = document.querySelector('.content');
+const placesList = content.querySelector('.places__list');
+const cards = placesList.querySelectorAll('.card');
+const addButton = content.querySelector('.profile__add-button');
+const cardTemplate = document.querySelector('#card-template').content;
+
 initialCards.forEach(function(element) {
   const cardItem = createCard();
   placesList.append(cardItem);
@@ -55,19 +61,17 @@ function addCard() {
 }
 addButton.addEventListener('click', addCard);
 
-function createCard() {
-  const cardElement = cardTemplate.cloneNode(true);
-cardElement.querySelector('.card__image').src = 'element.link'.alt = 'element.name';
-cardElement.querySelector('.card__delete-button');
-cardElement.querySelector('.card__like-button');
-cardElement.querySelector('.card__title').textContent = 'element.name';
-cardElement.querySelector('.card__delete-button').addEventListener('click', function (event) {
-  event.target.closest('.card').remove();
-});
-cardElement.querySelector('.card__like-button').addEventListener('click', function (event) {
-  event.target.classList.toggle('card__like-button_is-active');
-});
-return cardElement;
+function createCard(item, deleteCard) {
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const cardImage = cardElement.querySelector('.card__image');
+  const cardTitle = cardElement.querySelector('.card__title');
+  cardImage.src = item.link;
+  cardImage.alt = item.name;
+  cardTitle.textContent = item.name;
+  cardElement.querySelector('.card__delete-button').addEventListener('click', function (event) {
+    event.target.closest('.card').remove();
+    });
+  return cardElement;
 }
 
 function deleteCard(event) {
