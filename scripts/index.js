@@ -8,13 +8,13 @@
 
 // @todo: Вывести карточки на страницу
 
-let content = document.querySelector('.content');
-let placesList = content.querySelector('.places__list');
-let cards = placesList.querySelectorAll('.card');
-let addButton = content.querySelector('.profile__add-button');
+const content = document.querySelector('.content');
+const placesList = content.querySelector('.places__list');
+const cards = placesList.querySelectorAll('.card');
+const addButton = content.querySelector('.profile__add-button');
 const cardTemplate = document.querySelector('#card-template').content;
 
-initialCards.forEach(function(element) {
+/*initialCards.forEach(function(element) {
     const cardElement = cardTemplate.cloneNode(true);
 
     cardElement.querySelector('.card__image').src = element.link;
@@ -42,4 +42,34 @@ function addCard() {
   });
   placesList.append(templateCopy);
 }
+addButton.addEventListener('click', addCard);*/
+
+initialCards.forEach(function(element) {
+  const cardItem = createCard();
+  placesList.append(cardItem);
+});
+
+function addCard() {
+ const cardItem = createCard();
+  placesList.append(cardItem);
+}
 addButton.addEventListener('click', addCard);
+
+function createCard() {
+  const cardElement = cardTemplate.cloneNode(true);
+cardElement.querySelector('.card__image').src = 'element.link'.alt = 'element.name';
+cardElement.querySelector('.card__delete-button');
+cardElement.querySelector('.card__like-button');
+cardElement.querySelector('.card__title').textContent = 'element.name';
+cardElement.querySelector('.card__delete-button').addEventListener('click', function (event) {
+  event.target.closest('.card').remove();
+});
+cardElement.querySelector('.card__like-button').addEventListener('click', function (event) {
+  event.target.classList.toggle('card__like-button_is-active');
+});
+return cardElement;
+}
+
+function deleteCard(event) {
+  event.target.closest('.card').remove();
+}
