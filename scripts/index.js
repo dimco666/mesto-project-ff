@@ -61,19 +61,23 @@ function addCard() {
 }
 addButton.addEventListener('click', addCard);
 
-function createCard(item, deleteCard) {
+function deleteCard(cardElement) {
+  cardElement.remove();
+}
+
+function createCard(cardElement, deleteCard) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
   cardImage.src = item.link;
   cardImage.alt = item.name;
   cardTitle.textContent = item.name;
-  cardElement.querySelector('.card__delete-button').addEventListener('click', function (event) {
-    event.target.closest('.card').remove();
-    });
-  return cardElement;
-}
 
-function deleteCard(event) {
-  event.target.closest('.card').remove();
+    function handleDeleteButtonClick() {
+      deleteCard(cardElement);
+    }
+
+    const deleteButton = cardElement.querySelector('.card__delete-button');
+    deleteButton.addEventListener('click', handleDeleteButtonClick);
+  return cardElement;
 }
