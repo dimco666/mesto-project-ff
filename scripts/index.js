@@ -8,42 +8,6 @@
 
 // @todo: Вывести карточки на страницу
 
-/*const content = document.querySelector('.content');
-const placesList = content.querySelector('.places__list');
-const cards = placesList.querySelectorAll('.card');
-const addButton = content.querySelector('.profile__add-button');
-const cardTemplate = document.querySelector('#card-template').content;*/
-
-/*initialCards.forEach(function(element) {
-    const cardElement = cardTemplate.cloneNode(true);
-
-    cardElement.querySelector('.card__image').src = element.link;
-    cardElement.querySelector('.card__title').textContent = element.name;
-    cardElement.querySelector('.card__delete-button').addEventListener('click', function (event) {
-      event.target.closest('.card').remove();
-    });
-    cardElement.querySelector('.card__like-button').addEventListener('click', function (event) {
-      event.target.classList.toggle('card__like-button_is-active');
-    });
-    placesList.append(cardElement);
-});
-
-function addCard() {
-  const templateCopy = cardTemplate.cloneNode(true);
-  templateCopy.querySelector('.card__image').src = ''.alt = '';
-  templateCopy.querySelector('.card__delete-button');
-  templateCopy.querySelector('.card__like-button');
-  templateCopy.querySelector('.card__title').textContent = '';
-  templateCopy.querySelector('.card__delete-button').addEventListener('click', function (event) {
-    event.target.closest('.card').remove();
-  });
-  templateCopy.querySelector('.card__like-button').addEventListener('click', function (event) {
-    event.target.classList.toggle('card__like-button_is-active');
-  });
-  placesList.append(templateCopy);
-}
-addButton.addEventListener('click', addCard);*/
-
 const content = document.querySelector('.content');
 const placesList = content.querySelector('.places__list');
 const cards = placesList.querySelectorAll('.card');
@@ -54,16 +18,6 @@ initialCards.forEach(function(item) {
   const cardItem = createCard(item, deleteCard);
   placesList.append(cardItem);
 });
-
-function addCard() {
- const cardItem = createCard(item, deleteCard);
-  placesList.append(cardItem);
-}
-
-function handleAddButtonClick() {
-  addCard(item);
-}
-addButton.addEventListener('click', handleAddButtonClick);
 
 function deleteCard(cardElement) {
   cardElement.remove();
