@@ -14,16 +14,18 @@ const cards = placesList.querySelectorAll('.card');
 const addButton = content.querySelector('.profile__add-button');
 const cardTemplate = document.querySelector('#card-template').content;
 
+import { initialCards } from './cards.js';
+
 initialCards.forEach(function(item) {
   const cardItem = createCard(item, deleteCard);
   placesList.append(cardItem);
 });
 
-function deleteCard(cardElement) {
+export function deleteCard(cardElement) {
   cardElement.remove();
 }
 
-function createCard(item, deleteCard) {
+export function createCard(item, deleteCard) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
