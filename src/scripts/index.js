@@ -16,6 +16,7 @@ const cardTemplate = document.querySelector('#card-template').content;
 const editButton = content.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const closeButton = document.querySelector('.popup__close');
+const popupNewCard = document.querySelector('.popup_type_new-card');
 
 import { initialCards } from './cards.js';
 
@@ -55,3 +56,13 @@ function closePopup() {
 
 editButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
+
+function openPopupNewCard() {
+  popupNewCard.style.display = 'flex';
+}
+
+function closePopupNewCard() {
+  popupNewCard.style.display = 'none';
+}
+
+addButton.addEventListener('click', openPopupNewCard);
