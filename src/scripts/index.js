@@ -13,6 +13,9 @@ const placesList = content.querySelector('.places__list');
 const cards = placesList.querySelectorAll('.card');
 const addButton = content.querySelector('.profile__add-button');
 const cardTemplate = document.querySelector('#card-template').content;
+const editButton = content.querySelector('.profile__edit-button');
+const popupEdit = document.querySelector('.popup_type_edit');
+const closeButton = document.querySelector('.popup__close');
 
 import { initialCards } from './cards.js';
 
@@ -41,3 +44,14 @@ export function createCard(item, deleteCard) {
     deleteButton.addEventListener('click', handleDeleteButtonClick);
   return cardElement;
 }
+
+function openPopup() {
+  popupEdit.style.display = 'flex';
+}
+
+function closePopup() {
+  popupEdit.style.display = 'none';
+}
+
+editButton.addEventListener('click', openPopup);
+closeButton.addEventListener('click', closePopup);
