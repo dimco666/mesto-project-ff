@@ -17,6 +17,8 @@ const editButton = content.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const closeButton = document.querySelector('.popup__close');
 const popupNewCard = document.querySelector('.popup_type_new-card');
+const popupImage = document.querySelector('.popup_type_image');
+const popups = document.querySelectorAll('.popup');
 
 import { initialCards } from './cards.js';
 
@@ -47,22 +49,23 @@ export function createCard(item, deleteCard) {
 }
 
 function openPopup() {
-  popupEdit.style.display = 'flex';
+  popupEdit.classList.add('popup_is-opened');
 }
 
 function closePopup() {
-  popupEdit.style.display = 'none';
+  popupEdit.classList.remove('popup_is-opened');
 }
 
 editButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
 
 function openPopupNewCard() {
-  popupNewCard.style.display = 'flex';
+  popupNewCard.classList.add('popup_is-opened');
 }
 
 function closePopupNewCard() {
-  popupNewCard.style.display = 'none';
+  popupNewCard.classList.remove('popup_is-opened');
 }
 
 addButton.addEventListener('click', openPopupNewCard);
+closeButton.addEventListener('click', closePopupNewCard);
