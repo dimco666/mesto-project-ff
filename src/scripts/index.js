@@ -15,7 +15,7 @@ const addButton = content.querySelector('.profile__add-button');
 const cardTemplate = document.querySelector('#card-template').content;
 const editButton = content.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.popup_type_edit');
-const closeButton = document.querySelector('.popup__close');
+const closeButton = document.querySelectorAll('.popup__close');
 const popupNewCard = document.querySelector('.popup_type_new-card');
 const popupImage = document.querySelector('.popup_type_image');
 const popups = document.querySelectorAll('.popup');
@@ -47,25 +47,27 @@ export function createCard(item, deleteCard) {
     deleteButton.addEventListener('click', handleDeleteButtonClick);
   return cardElement;
 }
-
-function openPopup() {
-  popupEdit.classList.add('popup_is-opened');
+//функции открытия и закрытия попапа
+function openPopup(modalPopup) {
+  modalPopup.classList.add('popup_is-opened');
 }
 
-function closePopup() {
-  popupEdit.classList.remove('popup_is-opened');
+function closePopup(modalPopup) {
+  modalPopup.classList.remove('popup_is-opened');
 }
+//слушатели открытия
+editButton.addEventListener('click', () => {
+  openPopup(popupEdit)
+});
 
-editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
+addButton.addEventListener('click', () => {
+  openPopup(popupNewCard)
+});
+//слушатели закрытия
+closeButton[0].addEventListener('click', () => {
+  closePopup(popupEdit)
+});
 
-function openPopupNewCard() {
-  popupNewCard.classList.add('popup_is-opened');
-}
-
-function closePopupNewCard() {
-  popupNewCard.classList.remove('popup_is-opened');
-}
-
-addButton.addEventListener('click', openPopupNewCard);
-closeButton.addEventListener('click', closePopupNewCard);
+closeButton[1].addEventListener('click', () => {
+  closePopup(popupNewCard)
+});
