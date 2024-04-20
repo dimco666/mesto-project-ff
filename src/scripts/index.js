@@ -25,7 +25,7 @@ const modalImageCaption = popupImage.querySelector('.popup__caption');
 import { initialCards } from './cards.js';
 
 initialCards.forEach(function(item) {
-  const cardItem = createCard(item, deleteCard, handleClickCard);
+  const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
   placesList.append(cardItem);
 });
 
@@ -33,16 +33,22 @@ export function deleteCard(cardElement) {
   cardElement.remove();
 }
 
+function likeCard(evt) {
+  evt.target.classList.toggle('card__like-button_is-active');
+}
+
 function handleClickCard(item) {
   modalImage.src = item.link;
   modalImage.alt = item.name;
+  modalImageCaption.textContent = item.name;
   openPopup(popupImage);
 }
 
-export function createCard(item, deleteCard, handleClickCard) {
+export function createCard(item, deleteCard, handleClickCard, likeCard) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
+  const cardLikeButton = cardElement.querySelector('.card__like-button');
   cardImage.src = item.link;
   cardImage.alt = item.name;
   cardTitle.textContent = item.name;
@@ -55,6 +61,8 @@ export function createCard(item, deleteCard, handleClickCard) {
     deleteButton.addEventListener('click', handleDeleteButtonClick);
 
     cardImage.addEventListener('click', () => {handleClickCard(item)});
+
+    cardLikeButton.addEventListener('click', likeCard);
 
   return cardElement;
 }
@@ -75,16 +83,6 @@ editButton.addEventListener('click', () => {
 addButton.addEventListener('click', () => {
   openPopup(popupNewCard)
 });
-//слушатели закрытия
-/*
-closeButton[0].addEventListener('click', () => {
-  closePopup(popupEdit)
-});
-
-closeButton[1].addEventListener('click', () => {
-  closePopup(popupNewCard)
-});
-*/
 
 //закрытие попапов по крестику ИЛИ по оверлею
 popups.forEach((modalPopup) => {
