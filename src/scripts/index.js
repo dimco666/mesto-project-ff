@@ -92,3 +92,12 @@ popups.forEach((modalPopup) => {
     }
   });
 });
+
+//закрытие попапов по клавише Esc
+popups.forEach((modalPopup) => {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.code === "Escape" && modalPopup.classList.contains('popup_is-opened')) {
+      closePopup(modalPopup);
+    }
+  });
+});
