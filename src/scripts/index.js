@@ -33,9 +33,9 @@ export function deleteCard(cardElement) {
   cardElement.remove();
 }
 
-function handleClickCard(evt) {
-  const imageUrl = evt.link;
-  const imageAlt = evt.name;
+function handleClickCard(item) {
+  modalImage.src = item.link;
+  modalImage.alt = item.name;
   openPopup(popupImage);
 }
 
@@ -54,7 +54,7 @@ export function createCard(item, deleteCard, handleClickCard) {
     const deleteButton = cardElement.querySelector('.card__delete-button');
     deleteButton.addEventListener('click', handleDeleteButtonClick);
 
-    modalImage.addEventListener('click', () => {handleClickCard(evt)});
+    cardImage.addEventListener('click', () => {handleClickCard(item)});
 
   return cardElement;
 }
@@ -86,6 +86,7 @@ closeButton[1].addEventListener('click', () => {
 });
 */
 
+//закрытие попапов по крестику ИЛИ по оверлею
 popups.forEach((modalPopup) => {
   modalPopup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
