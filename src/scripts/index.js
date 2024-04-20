@@ -125,6 +125,8 @@ function handleFormSubmit(evt) {
     // Вставьте новые значения с помощью textContent
     nameInputValue.textContent = nameValue;
     jobInputValue.textContent = jobValue;
+
+    closePopup(popupEdit);
 }
 
 // Прикрепляем обработчик к форме:
