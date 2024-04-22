@@ -156,6 +156,8 @@ function handleAddCardSubmit(evt) {
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
   placesList.prepend(cardItem);
 
+  formElementAddCard.reset();
+
   closePopup(popupNewCard);
 }
 
