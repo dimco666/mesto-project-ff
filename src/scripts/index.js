@@ -148,8 +148,13 @@ function handleAddCardSubmit(evt) {
   cardImage.src = linkAddCardValue;
   cardTitle.textContent = nameAddCardValue;
 
-  const cardItem = createCard(item, linkAddCardValue, nameAddCardValue, deleteCard, handleClickCard, likeCard);
-  placesList.append(cardItem);
+  const item = {
+    name: nameAddCardValue,
+    link: linkAddCardValue
+  }
+
+  const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
+  placesList.prepend(cardItem);
 
   closePopup(popupNewCard);
 }
