@@ -132,3 +132,26 @@ function handleFormSubmit(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit);
+
+const formElementAddCard = document.querySelector('.popup_type_new-card .popup__form');
+const nameInputAddCard = document.querySelector('.popup__input_type_card-name');
+const linkInputAddCard = document.querySelector('.popup__input_type_url');
+
+function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+  const nameAddCardValue = nameInputAddCard.value;
+  const linkAddCardValue = linkInputAddCard.value; 
+
+  const cardImage = cardTemplate.querySelector('.card__image');
+  const cardTitle = cardTemplate.querySelector('.card__title');
+
+  cardImage.src = linkAddCardValue;
+  cardTitle.textContent = nameAddCardValue;
+
+  const cardItem = createCard(item, linkAddCardValue, nameAddCardValue, deleteCard, handleClickCard, likeCard);
+  placesList.append(cardItem);
+
+  closePopup(popupNewCard);
+}
+
+formElementAddCard.addEventListener('submit', handleAddCardSubmit);
