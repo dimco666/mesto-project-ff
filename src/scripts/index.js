@@ -142,12 +142,6 @@ function handleAddCardSubmit(evt) {
   const nameAddCardValue = nameInputAddCard.value;
   const linkAddCardValue = linkInputAddCard.value; 
 
-  const cardImage = cardTemplate.querySelector('.card__image');
-  const cardTitle = cardTemplate.querySelector('.card__title');
-
-  cardImage.src = linkAddCardValue;
-  cardTitle.textContent = nameAddCardValue;
-
   const item = {
     name: nameAddCardValue,
     link: linkAddCardValue
