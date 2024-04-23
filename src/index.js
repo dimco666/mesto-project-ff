@@ -21,7 +21,7 @@ initialCards.forEach(function(item) {
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
   placesList.append(cardItem);
 });
-
+//функция открытия попапа карточки по щелчку на картинку
 function handleClickCard(item) {
   modalImage.src = item.link;
   modalImage.alt = item.name;
@@ -86,7 +86,7 @@ function handleFormSubmit(evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit);
-
+//обработчик сабмит кнопки добавления новой карточки
 const formElementAddCard = document.querySelector('.popup_type_new-card .popup__form');
 const nameInputAddCard = document.querySelector('.popup__input_type_card-name');
 const linkInputAddCard = document.querySelector('.popup__input_type_url');
