@@ -23,12 +23,13 @@ const modalImage = popupImage.querySelector('.popup__image');
 const modalImageCaption = popupImage.querySelector('.popup__caption');
 
 import { initialCards } from './cards.js';
+import { createCard, deleteCard, likeCard } from './card.js';
 
 initialCards.forEach(function(item) {
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
   placesList.append(cardItem);
 });
-
+/*
 export function deleteCard(cardElement) {
   cardElement.remove();
 }
@@ -36,14 +37,14 @@ export function deleteCard(cardElement) {
 function likeCard(evt) {
   evt.target.classList.toggle('card__like-button_is-active');
 }
-
+*/
 function handleClickCard(item) {
   modalImage.src = item.link;
   modalImage.alt = item.name;
   modalImageCaption.textContent = item.name;
   openPopup(popupImage);
 }
-
+/*
 export function createCard(item, deleteCard, handleClickCard, likeCard) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
@@ -66,7 +67,7 @@ export function createCard(item, deleteCard, handleClickCard, likeCard) {
 
   return cardElement;
 }
-
+*/
 //функции открытия и закрытия попапа
 function openPopup(modalPopup) {
   modalPopup.classList.add('popup_is-opened');
