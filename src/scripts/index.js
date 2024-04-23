@@ -7,7 +7,7 @@
 // @todo: Функция удаления карточки
 
 // @todo: Вывести карточки на страницу
-
+/*
 const content = document.querySelector('.content');
 const placesList = content.querySelector('.places__list');
 const cards = placesList.querySelectorAll('.card');
@@ -23,12 +23,13 @@ const modalImage = popupImage.querySelector('.popup__image');
 const modalImageCaption = popupImage.querySelector('.popup__caption');
 
 import { initialCards } from './cards.js';
-import { createCard, deleteCard, likeCard } from './card.js';
+import { createCard, deleteCard, likeCard, handleClickCard } from './card.js';
 
 initialCards.forEach(function(item) {
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
   placesList.append(cardItem);
 });
+*/
 /*
 export function deleteCard(cardElement) {
   cardElement.remove();
@@ -38,12 +39,14 @@ function likeCard(evt) {
   evt.target.classList.toggle('card__like-button_is-active');
 }
 */
+/*
 function handleClickCard(item) {
   modalImage.src = item.link;
   modalImage.alt = item.name;
   modalImageCaption.textContent = item.name;
   openPopup(popupImage);
 }
+*/
 /*
 export function createCard(item, deleteCard, handleClickCard, likeCard) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -69,6 +72,7 @@ export function createCard(item, deleteCard, handleClickCard, likeCard) {
 }
 */
 //функции открытия и закрытия попапа
+/*
 function openPopup(modalPopup) {
   modalPopup.classList.add('popup_is-opened');
 }
@@ -76,6 +80,8 @@ function openPopup(modalPopup) {
 function closePopup(modalPopup) {
   modalPopup.classList.remove('popup_is-opened');
 }
+*/
+/*
 //слушатели открытия
 editButton.addEventListener('click', () => {
   openPopup(popupEdit)
@@ -102,7 +108,8 @@ popups.forEach((modalPopup) => {
     }
   });
 });
-
+*/
+/*
 //форма редактирования профиля
 // Находим форму в DOM
 const formElement = document.querySelector('.popup_type_edit .popup__form');// Воспользуйтесь методом querySelector()
@@ -157,3 +164,4 @@ function handleAddCardSubmit(evt) {
 }
 
 formElementAddCard.addEventListener('submit', handleAddCardSubmit);
+*/
