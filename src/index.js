@@ -47,15 +47,6 @@ popups.forEach((modalPopup) => {
   });
 });
 
-//закрытие попапов по клавише Esc
-popups.forEach((modalPopup) => {
-  document.addEventListener('keydown', (evt) => {
-    if (evt.code === "Escape" && modalPopup.classList.contains('popup_is-opened')) {
-      closePopup(modalPopup);
-    }
-  });
-});
-
 //форма редактирования профиля
 // Находим форму в DOM
 const formElement = document.querySelector('.popup_type_edit .popup__form');// Воспользуйтесь методом querySelector()
