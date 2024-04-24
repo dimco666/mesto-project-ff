@@ -31,7 +31,13 @@ function handleClickCard(item) {
 
 //слушатели открытия
 editButton.addEventListener('click', () => {
-  openPopup(popupEdit)
+  const nameProfileValue = document.querySelector('.profile__title');
+  const jobProfileValue = document.querySelector('.profile__description');
+  const nameValue = nameInput.value;
+  const jobValue = jobInput.value;
+  nameProfileValue.textContent = nameValue;
+  jobProfileValue.textContent = jobValue;
+  openPopup(popupEdit);
 });
 
 addButton.addEventListener('click', () => {
