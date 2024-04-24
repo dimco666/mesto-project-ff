@@ -49,14 +49,14 @@ popups.forEach((modalPopup) => {
 
 //форма редактирования профиля
 // Находим форму в DOM
-const formElement = document.querySelector('.popup_type_edit .popup__form');// Воспользуйтесь методом querySelector()
+const profileFormElement = document.querySelector('.popup_type_edit .popup__form');// Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
-const nameInput = document.querySelector('.popup__input_type_name');// Воспользуйтесь инструментом .querySelector()
-const jobInput = document.querySelector('.popup__input_type_description');;// Воспользуйтесь инструментом .querySelector()
+const nameInput = profileFormElement.querySelector('.popup__input_type_name');// Воспользуйтесь инструментом .querySelector()
+const jobInput = profileFormElement.querySelector('.popup__input_type_description');// Воспользуйтесь инструментом .querySelector()
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function handleFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
                                                 // Так мы можем определить свою логику отправки.
                                                 // О том, как это делать, расскажем позже.
@@ -76,7 +76,7 @@ function handleFormSubmit(evt) {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', handleFormSubmit);
+profileFormElement.addEventListener('submit', handleProfileFormSubmit);
 //обработчик сабмит кнопки добавления новой карточки
 const formElementAddCard = document.querySelector('.popup_type_new-card .popup__form');
 const nameInputAddCard = document.querySelector('.popup__input_type_card-name');
