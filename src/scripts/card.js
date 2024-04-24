@@ -7,17 +7,13 @@ export function createCard(item, deleteCard, handleClickCard, likeCard) {
     cardImage.src = item.link;
     cardImage.alt = item.name;
     cardTitle.textContent = item.name;
+    
+    const deleteButton = cardElement.querySelector('.card__delete-button');
+    deleteButton.addEventListener('click', () => {deleteCard(cardElement)});
   
-      function handleDeleteButtonClick() {
-        deleteCard(cardElement);
-      }
+    cardImage.addEventListener('click', () => {handleClickCard(item)});
   
-      const deleteButton = cardElement.querySelector('.card__delete-button');
-      deleteButton.addEventListener('click', handleDeleteButtonClick);
-  
-      cardImage.addEventListener('click', () => {handleClickCard(item)});
-  
-      cardLikeButton.addEventListener('click', likeCard);
+    cardLikeButton.addEventListener('click', likeCard);
   
     return cardElement;
   }
