@@ -33,10 +33,10 @@ function handleClickCard(item) {
 editButton.addEventListener('click', () => {
   const nameProfileValue = document.querySelector('.profile__title');
   const jobProfileValue = document.querySelector('.profile__description');
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
-  nameProfileValue.textContent = nameValue;
-  jobProfileValue.textContent = jobValue;
+  nameInput.value = 'Жак-Ив Кусто';
+  jobInput.value = 'Исследователь океана';
+  nameProfileValue.textContent = nameInput.value;
+  jobProfileValue.textContent = jobInput.value;
   openPopup(popupEdit);
 });
 
