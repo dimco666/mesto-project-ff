@@ -12,6 +12,8 @@ const popupImage = document.querySelector('.popup_type_image');
 const popups = document.querySelectorAll('.popup');
 const modalImage = popupImage.querySelector('.popup__image');
 const modalImageCaption = popupImage.querySelector('.popup__caption');
+const nameProfileValue = document.querySelector('.profile__title');
+const jobProfileValue = document.querySelector('.profile__description');
 
 import { initialCards } from './scripts/cards.js';
 import { createCard, deleteCard, likeCard } from './scripts/card.js';
@@ -31,12 +33,8 @@ function handleClickCard(item) {
 
 //слушатели открытия
 editButton.addEventListener('click', () => {
-  const nameProfileValue = document.querySelector('.profile__title');
-  const jobProfileValue = document.querySelector('.profile__description');
-  nameInput.value = 'Жак-Ив Кусто';
-  jobInput.value = 'Исследователь океана';
-  nameProfileValue.textContent = nameInput.value;
-  jobProfileValue.textContent = jobInput.value;
+  nameInput.value = nameProfileValue.textContent;
+  jobInput.value = jobProfileValue.textContent;
   openPopup(popupEdit);
 });
 
@@ -71,11 +69,9 @@ function handleProfileFormSubmit(evt) {
     const nameValue = nameInput.value;
     const jobValue = jobInput.value;
     // Выберите элементы, куда должны быть вставлены значения полей
-    const nameInputValue = document.querySelector('.profile__title');
-    const jobInputValue = document.querySelector('.profile__description');
     // Вставьте новые значения с помощью textContent
-    nameInputValue.textContent = nameValue;
-    jobInputValue.textContent = jobValue;
+    nameProfileValue.textContent = nameValue;
+    jobProfileValue.textContent = jobValue;
 
     closePopup(popupEdit);
 }
