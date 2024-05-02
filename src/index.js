@@ -114,46 +114,49 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 }; 
 //функция, которая показывает ошибку
-const showInputError = (inputElement, formElement, errorMessage) => {
-  const nameInputError = formElement.querySelector(`.${formInput.id}-error`);
-  inputElement.classList.add('popup__input_type_error');
+const showInputError = (inputElement, formElement, errorMessage, validationConfig) => {
+  const nameInputError = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add(validationConfig.inputErrorClass);
   nameInputError.textContent = errorMessage;
-  nameInputError.classList.add('popup__error_visible');
+  nameInputError.classList.add(validationConfig.errorClass);
 };
 //функция, скрывающая ошибку
-const hideInputError = (inputElement, formElement) => {
-  const nameInputError = formElement.querySelector(`.${formInput.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  nameInputError.classList.remove('popup__error_visible');
+const hideInputError = (inputElement, formElement, validationConfig) => {
+  const nameInputError = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove(validationConfig.inputErrorClass);
+  nameInputError.classList.remove(validationConfig.errorClass);
   nameInputError.textContent = '';
 };
 // Функция, которая проверяет валидность поля
-const isValid = (formElement, formInput) => {
-  if (!formInput.validity.valid) {
+const isValid = (formElement, inputElement, validationConfig) => {
+  if (!inputElement.validity.valid) {
     // Если поле не проходит валидацию, покажем ошибку
-    showInputError(formElement, formInput, formInput.validationMessage);
+    showInputError(formElement, inputElement, validationConfig, inputElement.validationMessage);
   } else {
     // Если проходит, скроем
-    hideInputError(formElement, formInput);
+    hideInputError(formElement, inputElement, validationConfig);
   }
 };
 
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+const setEventListeners = (formElement, validationConfig) => {
+  const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
 
-  inputList.forEach((formInput) => {
-    formInput.addEventListener('input', () => {
-      isValid(formElement, formInput)
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
+      isValid(formElement, inputElement, validationConfig)
     });
   });
 };
 
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
+const enableValidation = (validationConfig) => {
+  const formList = Array.from(validationConfig.formSelector);
 
   formList.forEach((formElement) => {
-    setEventListeners(formElement);
+    formElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+    });
+    setEventListeners(formElement, validationConfig);
   });
 };
 
-enableValidation();
+enableValidation(validationConfig);
