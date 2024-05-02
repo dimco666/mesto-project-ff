@@ -1,4 +1,4 @@
-.popup__input_type_name-error_active {
+.popup__error_visible {
     display: flex;
     color: red;
     font-family: Inter;

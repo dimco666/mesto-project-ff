@@ -104,48 +104,55 @@ function handleAddCardSubmit(evt) {
 
 formElementAddCard.addEventListener('submit', handleAddCardSubmit);
 //форма и инпут с именем в форме
-const formElementEditProfile = document.querySelector('.popup_type_edit .popup__form');
-const formInputNameEditProfile = formElementEditProfile.querySelector('.popup__form .popup__input');
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}; 
 //функция, которая показывает ошибку
-const showInputError = (element, formElementEditProfile, errorMessage) => {
-  const nameInputError = formElementEditProfile.querySelector(`.${formInputNameEditProfile.id}-error`);
-  element.classList.add('popup__input_type_error');
+const showInputError = (inputElement, formElement, errorMessage) => {
+  const nameInputError = formElement.querySelector(`.${formInput.id}-error`);
+  inputElement.classList.add('popup__input_type_error');
   nameInputError.textContent = errorMessage;
-  nameInputError.classList.add('popup__input_type_name-error_active');
+  nameInputError.classList.add('popup__error_visible');
 };
 //функция, скрывающая ошибку
-const hideInputError = (element, formElementEditProfile) => {
-  const nameInputError = formElementEditProfile.querySelector(`.${formInputNameEditProfile.id}-error`);
-  element.classList.remove('popup__input_type_error');
-  nameInputError.classList.remove('popup__input_type_name-error_active');
+const hideInputError = (inputElement, formElement) => {
+  const nameInputError = formElement.querySelector(`.${formInput.id}-error`);
+  inputElement.classList.remove('popup__input_type_error');
+  nameInputError.classList.remove('popup__error_visible');
   nameInputError.textContent = '';
 };
 // Функция, которая проверяет валидность поля
-const isValid = (formElementEditProfile, formInputNameEditProfile) => {
-  if (!formInputNameEditProfile.validity.valid) {
+const isValid = (formElement, formInput) => {
+  if (!formInput.validity.valid) {
     // Если поле не проходит валидацию, покажем ошибку
-    showInputError(formElementEditProfile, formInputNameEditProfile, formInputNameEditProfile.validationMessage);
+    showInputError(formElement, formInput, formInput.validationMessage);
   } else {
     // Если проходит, скроем
-    hideInputError(formElementEditProfile, formInputNameEditProfile);
+    hideInputError(formElement, formInput);
   }
 };
 
-const setEventListeners = (formElementEditProfile) => {
-  const inputList = Array.from(formElementEditProfile.querySelectorAll('.popup__input'));
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
 
-  inputList.forEach((formInputNameEditProfile) => {
-    formInputNameEditProfile.addEventListener('input', () => {
-      isValid(formElementEditProfile, formInputNameEditProfile)
+  inputList.forEach((formInput) => {
+    formInput.addEventListener('input', () => {
+      isValid(formElement, formInput)
     });
   });
 };
 
 const enableValidation = () => {
-  const formList = Array.from(formElementEditProfile.querySelectorAll('.popup__form'));
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
 
-  formList.forEach((formElementEditProfile) => {
-    setEventListeners(formElementEditProfile);
+  formList.forEach((formElement) => {
+    setEventListeners(formElement);
   });
 };
 
