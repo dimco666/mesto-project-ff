@@ -1,0 +1,9 @@
+.popup__input_type_name-error_active {
+    display: flex;
+    color: red;
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+    text-align: left;
+}

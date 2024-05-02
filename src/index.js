@@ -103,3 +103,50 @@ function handleAddCardSubmit(evt) {
 }
 
 formElementAddCard.addEventListener('submit', handleAddCardSubmit);
+//форма и инпут с именем в форме
+const formElementEditProfile = document.querySelector('.popup_type_edit .popup__form');
+const formInputNameEditProfile = formElementEditProfile.querySelector('.popup__form .popup__input');
+//функция, которая показывает ошибку
+const showInputError = (element, formElementEditProfile, errorMessage) => {
+  const nameInputError = formElementEditProfile.querySelector(`.${formInputNameEditProfile.id}-error`);
+  element.classList.add('popup__input_type_error');
+  nameInputError.textContent = errorMessage;
+  nameInputError.classList.add('popup__input_type_name-error_active');
+};
+//функция, скрывающая ошибку
+const hideInputError = (element, formElementEditProfile) => {
+  const nameInputError = formElementEditProfile.querySelector(`.${formInputNameEditProfile.id}-error`);
+  element.classList.remove('popup__input_type_error');
+  nameInputError.classList.remove('popup__input_type_name-error_active');
+  nameInputError.textContent = '';
+};
+// Функция, которая проверяет валидность поля
+const isValid = (formElementEditProfile, formInputNameEditProfile) => {
+  if (!formInputNameEditProfile.validity.valid) {
+    // Если поле не проходит валидацию, покажем ошибку
+    showInputError(formElementEditProfile, formInputNameEditProfile, formInputNameEditProfile.validationMessage);
+  } else {
+    // Если проходит, скроем
+    hideInputError(formElementEditProfile, formInputNameEditProfile);
+  }
+};
+
+const setEventListeners = (formElementEditProfile) => {
+  const inputList = Array.from(formElementEditProfile.querySelectorAll('.popup__input'));
+
+  inputList.forEach((formInputNameEditProfile) => {
+    formInputNameEditProfile.addEventListener('input', () => {
+      isValid(formElementEditProfile, formInputNameEditProfile)
+    });
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(formElementEditProfile.querySelectorAll('.popup__form'));
+
+  formList.forEach((formElementEditProfile) => {
+    setEventListeners(formElementEditProfile);
+  });
+};
+
+enableValidation();
