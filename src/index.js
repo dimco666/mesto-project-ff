@@ -112,16 +112,16 @@ const validationConfig = {
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
-}; 
+};
 //функция, которая показывает ошибку
-const showInputError = (inputElement, formElement, errorMessage, validationConfig) => {
+const showInputError = (formElement, inputElement, validationConfig, errorMessage) => {
   const nameInputError = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(validationConfig.inputErrorClass);
   nameInputError.textContent = errorMessage;
   nameInputError.classList.add(validationConfig.errorClass);
 };
 //функция, скрывающая ошибку
-const hideInputError = (inputElement, formElement, validationConfig) => {
+const hideInputError = (formElement, inputElement, validationConfig) => {
   const nameInputError = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(validationConfig.inputErrorClass);
   nameInputError.classList.remove(validationConfig.errorClass);
@@ -149,7 +149,7 @@ const setEventListeners = (formElement, validationConfig) => {
 };
 
 const enableValidation = (validationConfig) => {
-  const formList = Array.from(validationConfig.formSelector);
+  const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
 
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
