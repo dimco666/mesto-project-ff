@@ -129,6 +129,12 @@ const hideInputError = (formElement, inputElement, validationConfig) => {
 };
 // Функция, которая проверяет валидность поля
 const isValid = (formElement, inputElement, validationConfig) => {
+  if (inputElement.validity.patternMismatch) { //кастомное сообщение об ошибке, выдает undefined
+    inputElement.setCustomValidity(inputElement.dataset.errorMessage);
+  } else {
+    inputElement.setCustomValidity("");
+  }
+
   if (!inputElement.validity.valid) {
     // Если поле не проходит валидацию, покажем ошибку
     showInputError(formElement, inputElement, validationConfig, inputElement.validationMessage);
