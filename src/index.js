@@ -18,6 +18,7 @@ const jobProfileValue = document.querySelector('.profile__description');
 import { initialCards } from './scripts/cards.js';
 import { createCard, deleteCard, likeCard } from './scripts/card.js';
 import { openPopup, closePopup } from './scripts/modal.js';
+import { getAllCards, createCards } from './scripts/api.js';
 
 initialCards.forEach(function(item) {
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
@@ -187,3 +188,16 @@ const enableValidation = (validationConfig) => {
 };
 
 enableValidation(validationConfig);
+
+getAllCards()
+.then((data) => {
+  console.log(data);
+});
+
+createCards({
+  name: 'Архыз',
+  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+})
+.then((data) => {
+  console.log(data);
+});
