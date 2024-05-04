@@ -189,15 +189,13 @@ const enableValidation = (validationConfig) => {
 
 enableValidation(validationConfig);
 
-getAllCards()
-.then((data) => {
-  console.log(data);
-});
-
-createCards({
+Promise.all([getAllCards(), createCards({
   name: 'Архыз',
   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-})
-.then((data) => {
-  console.log(data);
+}),
+])
+.then(([cards, newCard]) => {
+  console.log({
+    cards, newCard
+  });
 });
