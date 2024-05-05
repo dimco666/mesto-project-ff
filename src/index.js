@@ -18,7 +18,7 @@ const jobProfileValue = document.querySelector('.profile__description');
 import { initialCards } from './scripts/cards.js';
 import { createCard, deleteCard, likeCard } from './scripts/card.js';
 import { openPopup, closePopup } from './scripts/modal.js';
-import { getAllCards, createCards } from './scripts/api.js';
+import { getUserData, getAllCards, createCards } from './scripts/api.js';
 
 initialCards.forEach(function(item) {
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
@@ -189,13 +189,12 @@ const enableValidation = (validationConfig) => {
 
 enableValidation(validationConfig);
 
-Promise.all([getAllCards(), createCards({
-  name: 'Архыз',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-}),
-])
-.then(([cards, newCard]) => {
+Promise.all([getUserData(), getAllCards()])
+.then(([dataUser, data]) => {
   console.log({
-    cards, newCard
+    dataUser, data
   });
-});
+  Array.from({data}).forEach((item) => {
+      placesList.append(createCard(item.name, item.link, item.likes.length, item._id, deleteCard, handleClickCard, likeCard));
+    });
+})

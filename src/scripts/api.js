@@ -1,4 +1,4 @@
-//запрос на получение данных о пользователе
+
 const editProfileTitle = document.querySelector('.profile__title');
 const editProfileDescription = document.querySelector('.profile__description');
 const editProfileAvatar = document.querySelector('.profile__image');
@@ -9,7 +9,9 @@ const handleRes = (res) => {
     }
   }
 
-fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me', {
+//запрос на получение данных о пользователе
+export const getUserData = () => {
+   fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me', {
   method: 'GET',
   headers: {
     authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
@@ -20,9 +22,9 @@ fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me', {
     console.log(data);
     editProfileTitle.textContent = data.name;
     editProfileDescription.textContent = data.about;
-    editProfileAvatar.style.backgroundImage = data.avatar;//не работает
+    editProfileAvatar.style.backgroundImage = `url(${data.avatar})`;
   });
-
+};
 //запрос на получение массива карточек
 export const getAllCards = () => {
 fetch('https://nomoreparties.co/v1/wff-cohort-12/cards', {
