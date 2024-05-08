@@ -20,7 +20,7 @@ const jobProfileValue = document.querySelector('.profile__description');
 import { initialCards } from './scripts/cards.js';
 import { createCard, deleteCard, likeCard } from './scripts/card.js';
 import { openPopup, closePopup } from './scripts/modal.js';
-import { getUserData, getAllCards, editDataProfile, createCards } from './scripts/api.js';
+import { getUserData, getAllCards, editDataProfile, createCards, updateAvatar } from './scripts/api.js';
 
 /*initialCards.forEach(function(item) {
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
@@ -228,3 +228,15 @@ Promise.all([getUserData(), getAllCards()])
     placesList.append(createCard(dataCard, deleteCard, handleClickCard, likeCard));
     });
 })
+
+updateAvatar(linkUpdateAvatarValue)
+  .then((data) => {
+    const formElementUpdateAvatar = document.querySelector('.popup_type_update-avatar .popup__form');
+    const linkInputUpdateAvatar = formElementUpdateAvatar.querySelector('.popup__input_type_update-avatar');
+    const linkUpdateAvatarValue = linkInputUpdateAvatar.value;
+    document.querySelector('.profile__image').style.backgroundImage = linkUpdateAvatarValue;
+    linkUpdateAvatarValue = `url(${data.avatar})`;
+    closePopup(popupUpdateAvatar);
+  })
+
+  formElementUpdateAvatar.addEventListener('submit', updateAvatar);

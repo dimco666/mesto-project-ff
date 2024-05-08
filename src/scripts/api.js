@@ -24,8 +24,8 @@ export const getAllCards = () => {
 })
   .then(handleRes)
 };
-
-export const createCards = (itemName, itemLink) => {//НЕ ГОТОВО!!!
+//запрос на создание карточки
+export const createCards = (itemName, itemLink) => {
   return fetch('https://nomoreparties.co/v1/wff-cohort-12/cards', {
   method: 'POST',
   headers: {
@@ -39,7 +39,7 @@ export const createCards = (itemName, itemLink) => {//НЕ ГОТОВО!!!
 })
   .then(handleRes)
 };
-
+//запрос на изменение данных профиля
 export const editDataProfile = (dataName, dataJob) => {
   return fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me', {
     method: 'PATCH',
@@ -53,4 +53,18 @@ export const editDataProfile = (dataName, dataJob) => {
   })
   })
   .then(handleRes)
-}
+};
+//запрос на изменение аватара
+export const updateAvatar = (dataAvatar) => {
+  return fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me/avatar', {
+    method: 'PATCH',
+    headers: {
+      "Content-Type": 'application/json',
+      authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
+    },
+    body: JSON.stringify({
+      avatar: `${dataAvatar}`
+  })
+  })
+  .then(handleRes)
+};
