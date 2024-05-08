@@ -191,10 +191,19 @@ enableValidation(validationConfig);
 
 Promise.all([getUserData(), getAllCards()])
 .then(([dataUser, data]) => {
+  const userName = dataUser.name;
+  const userAbout = dataUser.about;
+  document.querySelector('.profile__title').textContent = userName;
+  document.querySelector('.profile__description').textContent = userAbout;
+  document.querySelector('.profile__image').style.backgroundImage = `url(${dataUser.avatar})`;
   console.log({
     dataUser, data
   });
-  Array.from({data}).forEach((item) => {
-      placesList.append(createCard(item.name, item.link, item.likes.length, item._id, deleteCard, handleClickCard, likeCard));
+  Array.from(data).forEach((item) => {
+    const dataCard = {
+      name: item.name,
+      link: item.link
+    };
+    placesList.append(createCard(dataCard, deleteCard, handleClickCard, likeCard));
     });
 })
