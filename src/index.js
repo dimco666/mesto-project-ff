@@ -79,11 +79,11 @@ function handleProfileFormSubmit(evt) {
     // Вставьте новые значения с помощью textContent
   
 
-    editDataProfile(nameValue, jobValue)//НЕ ГОТОВО!!!!!!
-    .then((dataName, dataJob) => {
-    nameProfileValue.textContent = dataName.name;
-    jobProfileValue.textContent = dataJob.job;
-    console.log({dataName, dataJob});
+    editDataProfile(nameValue, jobValue)
+    .then((data) => {
+    nameProfileValue.textContent = data.name;
+    jobProfileValue.textContent = data.about;
+    console.log(data);
     });
 
     closePopup(popupEdit);
@@ -107,11 +107,11 @@ function handleAddCardSubmit(evt) {
     link: linkAddCardValue
   }
 
-  createCards(nameAddCardValue, linkAddCardValue)// НЕ ГОТОВО!!!!
-  .then((itemName, itemLink) => {
-    nameAddCardValue.textContent = item.name;
-    linkAddCardValue.textContent = item.link;
-    console.log({itemName, itemLink});
+  createCards(nameAddCardValue, linkAddCardValue)
+  .then((data) => {
+    item.name = data.name;
+    item.link = data.link;
+    console.log(data);
   })
 
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);

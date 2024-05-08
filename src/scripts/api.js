@@ -41,7 +41,7 @@ export const createCards = (itemName, itemLink) => {//НЕ ГОТОВО!!!
 };
 
 export const editDataProfile = (dataName, dataJob) => {
-  return fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me', {//НЕ ГОТОВО!!!
+  return fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me', {
     method: 'PATCH',
     headers: {
       "Content-Type": 'application/json',
