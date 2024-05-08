@@ -25,29 +25,32 @@ export const getAllCards = () => {
   .then(handleRes)
 };
 
-export const createCards = (data) => {
+export const createCards = (itemName, itemLink) => {//НЕ ГОТОВО!!!
   return fetch('https://nomoreparties.co/v1/wff-cohort-12/cards', {
   method: 'POST',
   headers: {
     "Content-Type": 'application/json',
     authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
   },
-  body: JSON.stringify(data)
+  body: JSON.stringify({
+    name: `${itemName}`,
+    link: `${itemLink}`
+  })
 })
   .then(handleRes)
 };
 
-export const editDataProfile = () => {
-  return fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me', {
+export const editDataProfile = (dataName, dataJob) => {
+  return fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me', {//НЕ ГОТОВО!!!
     method: 'PATCH',
     headers: {
       "Content-Type": 'application/json',
       authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
     },
     body: JSON.stringify({
-      name: editProfileTitle.textContent,
-      about: editProfileDescription.textContent
-    })
+      name: `${dataName}`,
+      about: `${dataJob}`
+  })
   })
   .then(handleRes)
 }

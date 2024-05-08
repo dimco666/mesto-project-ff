@@ -18,12 +18,12 @@ const jobProfileValue = document.querySelector('.profile__description');
 import { initialCards } from './scripts/cards.js';
 import { createCard, deleteCard, likeCard } from './scripts/card.js';
 import { openPopup, closePopup } from './scripts/modal.js';
-import { getUserData, getAllCards, createCards } from './scripts/api.js';
+import { getUserData, getAllCards, editDataProfile, createCards } from './scripts/api.js';
 
-initialCards.forEach(function(item) {
+/*initialCards.forEach(function(item) {
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
   placesList.append(cardItem);
-});
+});*/
 //функция открытия попапа карточки по щелчку на картинку
 function handleClickCard(item) {
   modalImage.src = item.link;
@@ -71,8 +71,14 @@ function handleProfileFormSubmit(evt) {
     const jobValue = jobInput.value;
     // Выберите элементы, куда должны быть вставлены значения полей
     // Вставьте новые значения с помощью textContent
-    nameProfileValue.textContent = nameValue;
-    jobProfileValue.textContent = jobValue;
+  
+
+    editDataProfile(nameValue, jobValue)//НЕ ГОТОВО!!!!!!
+    .then((dataName, dataJob) => {
+    nameProfileValue.textContent = dataName.name;
+    jobProfileValue.textContent = dataJob.job;
+    console.log({dataName, dataJob});
+    });
 
     closePopup(popupEdit);
 }
@@ -94,6 +100,13 @@ function handleAddCardSubmit(evt) {
     name: nameAddCardValue,
     link: linkAddCardValue
   }
+
+  createCards(nameAddCardValue, linkAddCardValue)// НЕ ГОТОВО!!!!
+  .then((itemName, itemLink) => {
+    nameAddCardValue.textContent = item.name;
+    linkAddCardValue.textContent = item.link;
+    console.log({itemName, itemLink});
+  })
 
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
   placesList.prepend(cardItem);
