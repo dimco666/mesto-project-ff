@@ -67,6 +67,17 @@
       <p class="popup__caption"></p>
     </div>
   </div>
+  <div class="popup popup_type_update-avatar popup_is-animated">
+    <div class="popup__content popup__content_update-avatar">
+      <button type="button" class="popup__close"></button>
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="popup__form" name="new-place" novalidate>
+        <input id="avatar__input" type="url" name="avatar-link" class="popup__input popup__input_type_update-avatar" placeholder="Ссылка на картинку" pattern="(https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*" required>
+        <span class="avatar__input-error"></span>
+        <button type="submit" class="button popup__button">Сохранить</button>
+      </form>
+    </div>
+  </div>
 </div>
 <script type="module" src="./scripts/cards.js"></script>
 <script type="module" src="./scripts/index.js" defer></script>

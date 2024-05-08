@@ -9,6 +9,8 @@ const popupEdit = document.querySelector('.popup_type_edit');
 const closeButton = document.querySelector('.popup__close');
 const popupNewCard = document.querySelector('.popup_type_new-card');
 const popupImage = document.querySelector('.popup_type_image');
+const popupUpdateAvatar = document.querySelector('.popup_type_update-avatar');
+const updateAvatarButton = document.querySelector('.profile__image');
 const popups = document.querySelectorAll('.popup');
 const modalImage = popupImage.querySelector('.popup__image');
 const modalImageCaption = popupImage.querySelector('.popup__caption');
@@ -41,6 +43,10 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   openPopup(popupNewCard)
+});
+
+updateAvatarButton.addEventListener('click', () => {
+  openPopup(popupUpdateAvatar)
 });
 
 //закрытие попапов по крестику ИЛИ по оверлею

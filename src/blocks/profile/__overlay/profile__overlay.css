@@ -9,6 +9,7 @@
     background-image: url(/src/images/Vector.svg);
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
 
 .profile__image:hover .profile__overlay {
