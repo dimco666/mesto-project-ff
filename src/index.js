@@ -202,7 +202,9 @@ Promise.all([getUserData(), getAllCards()])
   Array.from(data).forEach((item) => {
     const dataCard = {
       name: item.name,
-      link: item.link
+      link: item.link,
+      likes: item.likes.length,
+      id: item._id
     };
     placesList.append(createCard(dataCard, deleteCard, handleClickCard, likeCard));
     });
