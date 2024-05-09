@@ -4,9 +4,11 @@ export function createCard(item, deleteCard, handleClickCard, likeCard) {
     const cardImage = cardElement.querySelector('.card__image');
     const cardTitle = cardElement.querySelector('.card__title');
     const cardLikeButton = cardElement.querySelector('.card__like-button');
+    const cardLikes = cardElement.querySelector('.card__likes-counter');
     cardImage.src = item.link;
     cardImage.alt = item.name;
     cardTitle.textContent = item.name;
+    cardLikes.textContent = item.likes;
     
     const deleteButton = cardElement.querySelector('.card__delete-button');
     deleteButton.addEventListener('click', () => {deleteCard(cardElement)});

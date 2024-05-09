@@ -69,9 +69,6 @@ const jobInput = profileFormElement.querySelector('.popup__input_type_descriptio
 // она никуда отправляться не будет
 function handleProfileFormSubmit(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
-
     // Получите значение полей jobInput и nameInput из свойства value
     const nameValue = nameInput.value;
     const jobValue = jobInput.value;
