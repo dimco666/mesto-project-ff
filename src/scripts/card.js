@@ -1,4 +1,4 @@
-export function createCard(item, deleteCard, handleClickCard, likeCard) {
+export function createCard(item, deleteCard, handleClickCard, likeCard, userId) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
@@ -16,7 +16,11 @@ export function createCard(item, deleteCard, handleClickCard, likeCard) {
     cardImage.addEventListener('click', () => {handleClickCard(item)});
   
     cardLikeButton.addEventListener('click', likeCard);
-  
+
+    if(item.profileId !== userId) {
+      deleteButton.style.display = 'none';
+    }
+
     return cardElement;
   }
 

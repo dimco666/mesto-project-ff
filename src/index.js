@@ -209,6 +209,7 @@ Promise.all([getUserData(), getAllCards()])
 .then(([dataUser, data]) => {
   const userName = dataUser.name;
   const userAbout = dataUser.about;
+  const userId = dataUser._id;
   document.querySelector('.profile__title').textContent = userName;
   document.querySelector('.profile__description').textContent = userAbout;
   document.querySelector('.profile__image').style.backgroundImage = `url(${dataUser.avatar})`;
@@ -220,12 +221,12 @@ Promise.all([getUserData(), getAllCards()])
       name: item.name,
       link: item.link,
       likes: item.likes.length,
-      id: item._id
+      profileId: item.owner._id
     };
-    placesList.append(createCard(dataCard, deleteCard, handleClickCard, likeCard));
+    placesList.append(createCard(dataCard, deleteCard, handleClickCard, likeCard, userId));
     });
 })
-
+/*
 updateAvatar(linkUpdateAvatarValue)
   .then((data) => {
     const formElementUpdateAvatar = document.querySelector('.popup_type_update-avatar .popup__form');
@@ -236,4 +237,4 @@ updateAvatar(linkUpdateAvatarValue)
     closePopup(popupUpdateAvatar);
   })
 
-  formElementUpdateAvatar.addEventListener('submit', updateAvatar);
+  formElementUpdateAvatar.addEventListener('submit', updateAvatar);*/
