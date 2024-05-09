@@ -68,3 +68,17 @@ export const updateAvatar = (dataAvatar) => {
   })
   .then(handleRes)
 };
+
+//запрос на удаление карточки
+export const deleteCards = (itemId) => {
+  return fetch('https://nomoreparties.co/v1/wff-cohort-12/cards/`${itemId}`', {
+    method: 'DELETE',
+    headers: {
+      authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
+    },
+    body: JSON.stringify({
+      _id: `${itemId}`
+  })
+  })
+  .then(handleRes)
+};

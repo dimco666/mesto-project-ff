@@ -222,7 +222,8 @@ Promise.all([getUserData(), getAllCards()])
       name: item.name,
       link: item.link,
       likes: item.likes.length,
-      profileId: item.owner._id
+      profileId: item.owner._id,
+      _id: item._id
     };
     placesList.append(createCard(dataCard, deleteCard, handleClickCard, likeCard, userId));
     });
