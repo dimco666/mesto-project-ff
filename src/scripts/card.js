@@ -1,3 +1,5 @@
+import { deleteCards } from "./api.js";
+
 export function createCard(item, deleteCard, handleClickCard, likeCard, userId) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -11,7 +13,12 @@ export function createCard(item, deleteCard, handleClickCard, likeCard, userId) 
     cardLikes.textContent = item.likes;
     
     const deleteButton = cardElement.querySelector('.card__delete-button');
-    deleteButton.addEventListener('click', () => {deleteCard(cardElement)});
+    deleteButton.addEventListener('click', () => {
+      deleteCards(item._id)
+      .then(() => {
+        cardElement.remove();
+      })
+    });
   
     cardImage.addEventListener('click', () => {handleClickCard(item)});
   
