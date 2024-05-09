@@ -108,6 +108,7 @@ function handleAddCardSubmit(evt) {
   .then((data) => {
     item.name = data.name;
     item.link = data.link;
+    item.profileId = data.owner._id;
     console.log(data);
   })
 
