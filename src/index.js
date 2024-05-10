@@ -16,7 +16,7 @@ const modalImage = popupImage.querySelector('.popup__image');
 const modalImageCaption = popupImage.querySelector('.popup__caption');
 const nameProfileValue = document.querySelector('.profile__title');
 const jobProfileValue = document.querySelector('.profile__description');
-const buttonSave = document.querySelector('.popup_type_edit .popup__button');
+const buttonSave = document.querySelector('.popup__form .popup__button');
 
 import { initialCards } from './scripts/cards.js';
 import { createCard, deleteCard, likeCard } from './scripts/card.js';
@@ -66,6 +66,7 @@ const jobInput = profileFormElement.querySelector('.popup__input_type_descriptio
 // она никуда отправляться не будет
 function handleProfileFormSubmit(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+    renderLoading(true);
     // Получите значение полей jobInput и nameInput из свойства value
     const nameValue = nameInput.value;
     const jobValue = jobInput.value;
@@ -83,7 +84,7 @@ function handleProfileFormSubmit(evt) {
       console.log(`Ошибка: ${err}`)
     })
     .finally(() => {
-      
+      renderLoading(false);
     });
     closePopup(popupEdit);
 }
@@ -98,6 +99,7 @@ const linkInputAddCard = document.querySelector('.popup__input_type_url');
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
+  renderLoading(true);
   const nameAddCardValue = nameInputAddCard.value;
   const linkAddCardValue = linkInputAddCard.value; 
 
@@ -110,11 +112,11 @@ function handleAddCardSubmit(evt) {
   .then((data) => {
     item.name = data.name;
     item.link = data.link;
-    item.profileId = data.owner._id;
     item.likes = data.likes.length;
+    item.profileId = data.owner._id;
     item._id = data._id;
     console.log(data);
-    const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
+    const cardItem = createCard(item, deleteCard, handleClickCard, likeCard, item.profileId);
     placesList.prepend(cardItem);
 
     formElementAddCard.reset();
@@ -125,7 +127,7 @@ function handleAddCardSubmit(evt) {
     console.log(`Ошибка: ${err}`)
   })
   .finally(() => {
-
+    renderLoading(false);
   });
 
   deleteCards(item._id)
@@ -265,3 +267,12 @@ formElementUpdateAvatar.addEventListener('submit', (evt) => {
   updateAvatar(newAvatarUrl);
   closePopup(popupUpdateAvatar);
 })
+
+//функция обновления UX форм
+function renderLoading(isLoading) {
+  if(isLoading){
+    buttonSave.textContent = 'Сохранение...';
+  } else {
+    buttonSave.textContent = 'Сохранить';
+  }
+}
