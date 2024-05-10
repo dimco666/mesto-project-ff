@@ -14,10 +14,8 @@ export function createCard(item, deleteCard, handleClickCard, likeCard, userId) 
     
     const deleteButton = cardElement.querySelector('.card__delete-button');
     deleteButton.addEventListener('click', () => {
-      deleteCards(item._id)
-      .then(() => {
-        cardElement.remove();
-      })
+      deleteCards(item._id);
+      deleteCard(cardElement);
     });
   
     cardImage.addEventListener('click', () => {handleClickCard(item)});

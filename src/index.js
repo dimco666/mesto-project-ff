@@ -16,6 +16,7 @@ const modalImage = popupImage.querySelector('.popup__image');
 const modalImageCaption = popupImage.querySelector('.popup__caption');
 const nameProfileValue = document.querySelector('.profile__title');
 const jobProfileValue = document.querySelector('.profile__description');
+const buttonSave = document.querySelector('.popup_type_edit .popup__button');
 
 import { initialCards } from './scripts/cards.js';
 import { createCard, deleteCard, likeCard } from './scripts/card.js';
@@ -77,8 +78,13 @@ function handleProfileFormSubmit(evt) {
     nameProfileValue.textContent = data.name;
     jobProfileValue.textContent = data.about;
     console.log(data);
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`)
+    })
+    .finally(() => {
+      
     });
-
     closePopup(popupEdit);
 }
 
@@ -114,6 +120,17 @@ function handleAddCardSubmit(evt) {
     formElementAddCard.reset();
 
     closePopup(popupNewCard);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`)
+  })
+  .finally(() => {
+
+  });
+
+  deleteCards(item._id)
+  .then(() => {
+    cardElement.remove();
   })
 }
 
@@ -226,6 +243,13 @@ Promise.all([getUserData(), getAllCards()])
     placesList.append(createCard(dataCard, deleteCard, handleClickCard, likeCard, userId));
     });
 })
+.catch((err) => {
+  console.log(`Ошибка: ${err}`)
+})
+.finally(() => {
+
+});
+
 //обновление аватара
 updateAvatarButton.addEventListener('click', () => {
   openPopup(popupUpdateAvatar)
