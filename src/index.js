@@ -20,7 +20,7 @@ const jobProfileValue = document.querySelector('.profile__description');
 import { initialCards } from './scripts/cards.js';
 import { createCard, deleteCard, likeCard } from './scripts/card.js';
 import { openPopup, closePopup } from './scripts/modal.js';
-import { getUserData, getAllCards, editDataProfile, createCards, updateAvatar } from './scripts/api.js';
+import { getUserData, getAllCards, editDataProfile, createCards, updateAvatar, deleteCards } from './scripts/api.js';
 
 /*initialCards.forEach(function(item) {
   const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
@@ -43,10 +43,6 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   openPopup(popupNewCard)
-});
-
-updateAvatarButton.addEventListener('click', () => {
-  openPopup(popupUpdateAvatar)
 });
 
 //закрытие попапов по крестику ИЛИ по оверлею
@@ -109,15 +105,16 @@ function handleAddCardSubmit(evt) {
     item.name = data.name;
     item.link = data.link;
     item.profileId = data.owner._id;
+    item.likes = data.likes.length;
+    item._id = data._id;
     console.log(data);
+    const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
+    placesList.prepend(cardItem);
+
+    formElementAddCard.reset();
+
+    closePopup(popupNewCard);
   })
-
-  const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
-  placesList.prepend(cardItem);
-
-  formElementAddCard.reset();
-
-  closePopup(popupNewCard);
 }
 
 formElementAddCard.addEventListener('submit', handleAddCardSubmit);
@@ -211,9 +208,10 @@ Promise.all([getUserData(), getAllCards()])
   const userName = dataUser.name;
   const userAbout = dataUser.about;
   const userId = dataUser._id;
+  const userAvatar = dataUser.avatar;
   document.querySelector('.profile__title').textContent = userName;
   document.querySelector('.profile__description').textContent = userAbout;
-  document.querySelector('.profile__image').style.backgroundImage = `url(${dataUser.avatar})`;
+  document.querySelector('.profile__image').style.backgroundImage = `url(${userAvatar})`;
   console.log({
     dataUser, data
   });
@@ -228,15 +226,18 @@ Promise.all([getUserData(), getAllCards()])
     placesList.append(createCard(dataCard, deleteCard, handleClickCard, likeCard, userId));
     });
 })
-/*
-updateAvatar(linkUpdateAvatarValue)
-  .then((data) => {
-    const formElementUpdateAvatar = document.querySelector('.popup_type_update-avatar .popup__form');
-    const linkInputUpdateAvatar = formElementUpdateAvatar.querySelector('.popup__input_type_update-avatar');
-    const linkUpdateAvatarValue = linkInputUpdateAvatar.value;
-    document.querySelector('.profile__image').style.backgroundImage = linkUpdateAvatarValue;
-    linkUpdateAvatarValue = `url(${data.avatar})`;
-    closePopup(popupUpdateAvatar);
-  })
+//обновление аватара
+updateAvatarButton.addEventListener('click', () => {
+  openPopup(popupUpdateAvatar)
+});
 
-  formElementUpdateAvatar.addEventListener('submit', updateAvatar);*/
+const formElementUpdateAvatar = document.querySelector('.popup_type_update-avatar .popup__form');
+const linkInputUpdateAvatar = formElementUpdateAvatar.querySelector('.popup__input_type_update-avatar');
+
+formElementUpdateAvatar.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const newAvatarUrl = linkInputUpdateAvatar.value;
+  updateAvatarButton.style.backgroundImage = newAvatarUrl;
+  updateAvatar(newAvatarUrl);
+  closePopup(popupUpdateAvatar);
+})

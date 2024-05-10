@@ -54,6 +54,7 @@ export const editDataProfile = (dataName, dataJob) => {
   })
   .then(handleRes)
 };
+
 //запрос на изменение аватара
 export const updateAvatar = (dataAvatar) => {
   return fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me/avatar', {
@@ -63,7 +64,7 @@ export const updateAvatar = (dataAvatar) => {
       authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
     },
     body: JSON.stringify({
-      avatar: `${dataAvatar}`
+      avatar: dataAvatar
   })
   })
   .then(handleRes)
@@ -72,6 +73,34 @@ export const updateAvatar = (dataAvatar) => {
 //запрос на удаление карточки
 export const deleteCards = (itemId) => {
   return fetch(`https://nomoreparties.co/v1/wff-cohort-12/cards/${itemId}`, {
+    method: 'DELETE',
+    headers: {
+      authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
+    },
+    body: JSON.stringify({
+      _id: `${itemId}`
+  })
+  })
+  .then(handleRes)
+};
+
+//запрос поставить лайк
+export const newLikeCard = (itemId) => {
+  return fetch(`https://nomoreparties.co/v1/wff-cohort-12/cards/likes/${itemId}`, {
+    method: 'PUT',
+    headers: {
+      authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
+    },
+    body: JSON.stringify({
+      _id: `${itemId}`
+  })
+  })
+  .then(handleRes)
+};
+
+//запрос убрать лайк
+export const deleteLikeCard = (itemId) => {
+  return fetch(`https://nomoreparties.co/v1/wff-cohort-12/cards/likes/${itemId}`, {
     method: 'DELETE',
     headers: {
       authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
