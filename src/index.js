@@ -238,7 +238,7 @@ Promise.all([getUserData(), getAllCards()])
     const dataCard = {
       name: item.name,
       link: item.link,
-      likes: item.likes.length,
+      likes: item.likes,
       profileId: item.owner._id,
       _id: item._id
     };
