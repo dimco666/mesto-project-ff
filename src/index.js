@@ -18,15 +18,10 @@ const nameProfileValue = document.querySelector('.profile__title');
 const jobProfileValue = document.querySelector('.profile__description');
 const buttonSave = document.querySelector('.popup__form .popup__button');
 
-import { initialCards } from './scripts/cards.js';
 import { createCard, deleteCard, likeCard } from './scripts/card.js';
 import { openPopup, closePopup } from './scripts/modal.js';
 import { getUserData, getAllCards, editDataProfile, createCards, updateAvatar, deleteCards } from './scripts/api.js';
 
-/*initialCards.forEach(function(item) {
-  const cardItem = createCard(item, deleteCard, handleClickCard, likeCard);
-  placesList.append(cardItem);
-});*/
 //функция открытия попапа карточки по щелчку на картинку
 function handleClickCard(item) {
   modalImage.src = item.link;
@@ -130,10 +125,6 @@ function handleAddCardSubmit(evt) {
     renderLoading(false);
   });
 
-  deleteCards(item._id)
-  .then(() => {
-    cardElement.remove();
-  })
 }
 
 formElementAddCard.addEventListener('submit', handleAddCardSubmit);

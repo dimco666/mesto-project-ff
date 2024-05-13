@@ -15,10 +15,6 @@ export function createCard(item, deleteCard, handleClickCard, likeCard, userId) 
     
     
     const deleteButton = cardElement.querySelector('.card__delete-button');
-    deleteButton.addEventListener('click', () => {
-      deleteCards(item._id);
-      deleteCard(cardElement);
-    });
   
     cardImage.addEventListener('click', () => {handleClickCard(item)});
   
@@ -26,13 +22,19 @@ export function createCard(item, deleteCard, handleClickCard, likeCard, userId) 
 
     if(item.profileId !== userId) {
       deleteButton.style.display = 'none';
+    } else {
+      deleteButton.addEventListener('click', () => {deleteCard(cardElement, cardID)});
     }
 
     return cardElement;
   }
 
-  export function deleteCard(cardElement) {
-    cardElement.remove();
+  export function deleteCard(cardElement, cardID) {
+    deleteCards(cardID)
+    .then((res) => {
+      console.log(res);
+      cardElement.remove();
+    })
   }
   
   export const likeCard = (cardLikeButton, cardID) => {

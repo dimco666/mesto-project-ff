@@ -54,7 +54,7 @@
       <form class="popup__form" name="new-place" novalidate>
         <input id="place__input" type="text" name="place-name" class="popup__input popup__input_type_card-name" placeholder="Название" minlength="2" maxlength="30" pattern="^[a-zA-Zа-яА-ЯёЁ0-9\s\-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required>
         <span class="place__input-error"></span>
-        <input id="url__input" type="url" name="link" class="popup__input popup__input_type_url" placeholder="Ссылка на картинку" pattern="(https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*" required>
+        <input id="url__input" type="url" name="link" class="popup__input popup__input_type_url" placeholder="Ссылка на картинку" required>
         <span class="url__input-error"></span>
         <button type="submit" class="button popup__button">Сохранить</button>
       </form>
@@ -72,7 +72,7 @@
       <button type="button" class="popup__close"></button>
       <h3 class="popup__title">Обновить аватар</h3>
       <form class="popup__form" name="new-place" novalidate>
-        <input id="avatar__input" type="url" name="avatar-link" class="popup__input popup__input_type_update-avatar" placeholder="Ссылка на картинку" pattern="(https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*" required>
+        <input id="avatar__input" type="url" name="avatar-link" class="popup__input popup__input_type_update-avatar" placeholder="Ссылка на картинку" required>
         <span class="avatar__input-error"></span>
         <button type="submit" class="button popup__button">Сохранить</button>
       </form>
