@@ -2,54 +2,54 @@ const handleRes = (res) => {
     if(res.ok) {
       return res.json();
     }
+
+    return Promise.reject(`Ошибка: ${res.status}`)
+  }
+
+  const config = {
+    baseUrl: 'https://nomoreparties.co/v1/wff-cohort-12',
+    headers: {
+      authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b',
+      'Content-Type': 'application/json'
+    }
   }
 
 //запрос на получение данных о пользователе
 export const getUserData = () => {
-  return fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me', {
+  return fetch(`${config.baseUrl}/users/me`, {
   method: 'GET',
-  headers: {
-    authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
-  }
+  headers: config.headers
 })
   .then(handleRes)
 };
 //запрос на получение массива карточек
 export const getAllCards = () => {
-  return fetch('https://nomoreparties.co/v1/wff-cohort-12/cards', {
+  return fetch(`${config.baseUrl}/cards`, {
   method: 'GET',
-  headers: {
-    authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
-  }
+  headers: config.headers
 })
   .then(handleRes)
 };
 //запрос на создание карточки
 export const createCards = (itemName, itemLink) => {
-  return fetch('https://nomoreparties.co/v1/wff-cohort-12/cards', {
+  return fetch(`${config.baseUrl}/cards`, {
   method: 'POST',
-  headers: {
-    "Content-Type": 'application/json',
-    authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
-  },
+  headers: config.headers,
   body: JSON.stringify({
-    name: `${itemName}`,
-    link: `${itemLink}`
+    name: itemName,
+    link: itemLink
   })
 })
   .then(handleRes)
 };
 //запрос на изменение данных профиля
 export const editDataProfile = (dataName, dataJob) => {
-  return fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me', {
+  return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
-    headers: {
-      "Content-Type": 'application/json',
-      authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
-    },
+    headers: config.headers,
     body: JSON.stringify({
-      name: `${dataName}`,
-      about: `${dataJob}`
+      name: dataName,
+      about: dataJob
   })
   })
   .then(handleRes)
@@ -57,12 +57,9 @@ export const editDataProfile = (dataName, dataJob) => {
 
 //запрос на изменение аватара
 export const updateAvatar = (dataAvatar) => {
-  return fetch('https://nomoreparties.co/v1/wff-cohort-12/users/me/avatar', {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
-    headers: {
-      "Content-Type": 'application/json',
-      authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
-    },
+    headers: config.headers,
     body: JSON.stringify({
       avatar: dataAvatar
   })
@@ -72,13 +69,11 @@ export const updateAvatar = (dataAvatar) => {
 
 //запрос на удаление карточки
 export const deleteCards = (itemId) => {
-  return fetch(`https://nomoreparties.co/v1/wff-cohort-12/cards/${itemId}`, {
+  return fetch(`${config.baseUrl}/cards/${itemId}`, {
     method: 'DELETE',
-    headers: {
-      authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
-    },
+    headers: config.headers,
     body: JSON.stringify({
-      _id: `${itemId}`
+      _id: itemId
   })
   })
   .then(handleRes)
@@ -86,13 +81,11 @@ export const deleteCards = (itemId) => {
 
 //запрос поставить лайк
 export const newLikeCard = (itemId) => {
-  return fetch(`https://nomoreparties.co/v1/wff-cohort-12/cards/likes/${itemId}`, {
+  return fetch(`${config.baseUrl}/cards/likes/${itemId}`, {
     method: 'PUT',
-    headers: {
-      authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
-    },
+    headers: config.headers,
     body: JSON.stringify({
-      _id: `${itemId}`
+      _id: itemId
   })
   })
   .then(handleRes)
@@ -100,13 +93,11 @@ export const newLikeCard = (itemId) => {
 
 //запрос убрать лайк
 export const deleteLikeCard = (itemId) => {
-  return fetch(`https://nomoreparties.co/v1/wff-cohort-12/cards/likes/${itemId}`, {
+  return fetch(`${config.baseUrl}/cards/likes/${itemId}`, {
     method: 'DELETE',
-    headers: {
-      authorization: '43dbcb1d-1b96-42eb-95fc-d0eb8a940d2b'
-    },
+    headers: config.headers,
     body: JSON.stringify({
-      _id: `${itemId}`
+      _id: itemId
   })
   })
   .then(handleRes)
