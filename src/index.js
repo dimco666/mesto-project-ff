@@ -81,7 +81,7 @@ function handleProfileFormSubmit(evt) {
       console.log(`Ошибка: ${err}`)
     })
     .finally(() => {
-      renderLoading(false);
+      renderLoading(false)
     });
     closePopup(popupEdit);
 }
@@ -119,8 +119,6 @@ function handleAddCardSubmit(evt) {
     placesList.prepend(cardItem);
 
     formElementAddCard.reset();
-
-    closePopup(popupNewCard);
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`)
@@ -129,6 +127,7 @@ function handleAddCardSubmit(evt) {
     renderLoading(false);
   });
 
+  closePopup(popupNewCard);
 }
 
 formElementAddCard.addEventListener('submit', handleAddCardSubmit);
@@ -193,9 +192,5 @@ formElementUpdateAvatar.addEventListener('submit', (evt) => {
 
 //функция обновления UX форм
 function renderLoading(isLoading) {
-  if(isLoading){
-    buttonSave.textContent = 'Сохранение...';
-  } else {
-    buttonSave.textContent = 'Сохранить';
-  }
+    buttonSave.textContent = isLoading ? 'Сохранение...' : 'Сохранить'
 }
