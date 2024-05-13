@@ -126,7 +126,6 @@ function handleAddCardSubmit(evt) {
   .finally(() => {
     renderLoading(false);
   });
-
   closePopup(popupNewCard);
 }
 

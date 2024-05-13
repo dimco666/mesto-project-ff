@@ -18,7 +18,7 @@ export function createCard(item, deleteCard, handleClickCard, likeCard, userId) 
   
     cardImage.addEventListener('click', () => {handleClickCard(item)});
   
-    cardLikeButton.addEventListener('click', likeCard(cardLikeButton, cardID));
+    cardLikeButton.addEventListener('click', () => {likeCard(cardLikeButton, cardID)});
 
     if(item.profileId !== userId) {
       deleteButton.style.display = 'none';
